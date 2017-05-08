@@ -88,7 +88,11 @@ class UserController extends Controller
 
     public function getUserImage($filename)
     {
+     public function getUserImage($filename)
+    {
         $file = Storage::disk('local')->get($filename);
-        return new Response($file, 200);
+		ob_end_clean();
+        return response($file, 200)->header('Content-Type','image/jpg');
+    }
     }
 }
